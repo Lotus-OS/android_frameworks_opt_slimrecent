@@ -39,7 +39,6 @@ import android.graphics.Bitmap;
 //import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 //import android.graphics.Canvas;
-import android.graphics.drawable.AnimatedVectorDrawable;
 //import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 //import android.graphics.Paint;
@@ -635,9 +634,7 @@ public class RecentPanelView {
 
         // All apps were removed? Close recents panel.
         if (mCardAdapter.getItemCount() == 0) {
-            if (!(mEmptyRecentView.getDrawable() instanceof AnimatedVectorDrawable)) {
-                setVisibility();
-            }
+            setVisibility();
             exit();
         }
         mController.updateMemoryStatus();
@@ -793,15 +790,6 @@ public class RecentPanelView {
                 mCardAdapter.getItemCount() == 0) ? View.VISIBLE : View.GONE);
         mCardRecyclerView.setVisibility((
                 mCardAdapter.getItemCount() == 0) ? View.GONE : View.VISIBLE);
-
-        if (mEmptyRecentView.getDrawable() instanceof AnimatedVectorDrawable) {
-            AnimatedVectorDrawable vd = (AnimatedVectorDrawable) mEmptyRecentView.getDrawable();
-            if (mCardAdapter.getItemCount() == 0) {
-                vd.start();
-            } else {
-                vd.stop();
-            }
-        }
         mController.updateMemoryStatus();
     }
 
